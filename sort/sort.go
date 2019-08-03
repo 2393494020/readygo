@@ -1,12 +1,10 @@
 package sort
 
 import (
-	"fmt"
+	// "fmt"
 )
 
-func BubbleSort(arr *[30]int)  {
-	fmt.Printf("排序前:%d\n", (*arr))
-
+func BubbleSort(arr *[30]int) {
 	arrLen := len(*arr)
 
 	for i := 0; i < arrLen - 1; i++ {
@@ -18,6 +16,42 @@ func BubbleSort(arr *[30]int)  {
 			}
 		}
 	}
+}
 
-	fmt.Printf("排序后:%d\n", (*arr))
+func QuickSort(arr *[30]int, l int, h int) {
+	if l < h {
+		x := (*arr)[l]
+		i := l
+		j := h
+		for i < j {
+			for i < j {
+				if (*arr)[j] < x {
+					(*arr)[i] = (*arr)[j]
+					break
+				}
+
+				j--
+			}
+			// if (*arr)[j] < x {
+			// 	(*arr)[i] = (*arr)[j]
+			// }
+
+			for i < j {
+				if (*arr)[i] > x {
+					(*arr)[j] = (*arr)[i]
+					break
+				}
+
+				i++
+			}
+			// if (*arr)[i] > x {
+			// 	(*arr)[j] = (*arr)[i]
+			// }
+
+			(*arr)[i] = x
+		}	
+		
+		QuickSort(arr, l, i - 1)
+		QuickSort(arr, i + 1, h)
+	}
 }

@@ -1,5 +1,2 @@
 # ready go
-
-#### 值传递
-
-数组，结构
+go get github.com/2393494020/readygo
