@@ -4,7 +4,7 @@ import (
 	// "fmt"
 )
 
-func BubbleSort(arr *[30]int) {
+func BubbleSort(arr *[]int) {
 	arrLen := len(*arr)
 
 	for i := 0; i < arrLen - 1; i++ {
@@ -18,7 +18,7 @@ func BubbleSort(arr *[30]int) {
 	}
 }
 
-func QuickSort(arr *[30]int, l int, h int) {
+func QuickSort(arr *[]int, l int, h int) {
 	if l < h {
 		x := (*arr)[l]
 		i := l
@@ -32,9 +32,6 @@ func QuickSort(arr *[30]int, l int, h int) {
 
 				j--
 			}
-			// if (*arr)[j] < x {
-			// 	(*arr)[i] = (*arr)[j]
-			// }
 
 			for i < j {
 				if (*arr)[i] > x {
@@ -44,12 +41,9 @@ func QuickSort(arr *[30]int, l int, h int) {
 
 				i++
 			}
-			// if (*arr)[i] > x {
-			// 	(*arr)[j] = (*arr)[i]
-			// }
 
 			(*arr)[i] = x
-		}	
+		}
 		
 		QuickSort(arr, l, i - 1)
 		QuickSort(arr, i + 1, h)
