@@ -6,9 +6,10 @@ import (
 	"time"
 	"math/rand"
 	"github.com/2393494020/readygo/sort"
+	"github.com/2393494020/readygo/array"
 )
 
-func main()  {
+func main00() {
 	seed := rand.NewSource(time.Now().UnixNano())
     randGenerator := rand.New(seed)
 	
@@ -31,5 +32,8 @@ func main()  {
 	
 	now := time.Now()
 	fmt.Printf("%d-%d-%d %d:%d:%d\n", now.Year(), now.Month(), now.Month(), now.Hour(), now.Minute(), now.Second())
-	
+}
+
+func main() {
+	array.SparseArray()
 }
