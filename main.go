@@ -34,6 +34,55 @@ func main00() {
 	fmt.Printf("%d-%d-%d %d:%d:%d\n", now.Year(), now.Month(), now.Month(), now.Hour(), now.Minute(), now.Second())
 }
 
+type Person struct {
+	name string
+	age int
+}
+
+type Student struct {
+	Person
+	id string
+}
+
+func (person *Person) setAge(age int) {
+	person.age = age
+}
+
+func (student *Student) setId(id string) {
+	student.id = id
+}
+
+type Human interface {
+	greeting() string
+}
+
+type Chinese struct {
+	word string
+}
+
+type English struct {
+	word string	
+}
+
+func (chinese *Chinese) greeting() string {
+	return chinese.word
+}
+
+func (english *English) greeting() string {
+	return english.word
+}
+
 func main() {
 	array.SparseArray()
+	student := Student{Person{"小明", 32}, "201908010000"}
+	student.setAge(35)
+	student.setId("201908010001")
+
+	fmt.Println(student)
+
+	chinese := Chinese{"你好！"}
+    english := English{"Hello!"}
+
+    fmt.Println(chinese.greeting())
+    fmt.Println(english.greeting())
 }
