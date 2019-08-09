@@ -7,6 +7,8 @@ import (
 	"math/rand"
 	"github.com/2393494020/readygo/sort"
 	"github.com/2393494020/readygo/array"
+	"github.com/2393494020/readygo/io"
+	"github.com/2393494020/readygo/database"
 )
 
 func main00() {
@@ -72,7 +74,7 @@ func (english *English) greeting() string {
 	return english.word
 }
 
-func main() {
+func main01() {
 	array.SparseArray()
 	student := Student{Person{"小明", 32}, "201908010000"}
 	student.setAge(35)
@@ -85,4 +87,10 @@ func main() {
 
     fmt.Println(chinese.greeting())
     fmt.Println(english.greeting())
+}
+
+func main() {
+	io.OsWriteFile("hello world")
+	io.OsWriteFile("你好，世界")
+	database.QueryMysql()
 }
