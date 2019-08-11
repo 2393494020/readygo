@@ -7,7 +7,7 @@ import (
 	"math/rand"
 	"github.com/2393494020/readygo/sort"
 	"github.com/2393494020/readygo/array"
-	"github.com/2393494020/readygo/io"
+	_ "github.com/2393494020/readygo/io"
 	"github.com/2393494020/readygo/database"
 )
 
@@ -89,8 +89,18 @@ func main01() {
     fmt.Println(english.greeting())
 }
 
-func main() {
-	io.OsWriteFile("hello world")
-	io.OsWriteFile("你好，世界")
+func main02() {
+	// io.OsWriteFile("hello world")
+	// io.OsWriteFile("你好，世界")
 	database.QueryMysql()
+}
+
+func main() {
+	var i = 10
+	var ptr *int = &i
+	*ptr = 9
+	
+	fmt.Printf("i=%v\n", *ptr)
+	fmt.Printf("i=%v\n", i)
+	fmt.Printf("%v\n", time.Now().Format("2006-01-02 15:04:05"))
 }

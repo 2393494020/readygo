@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"database/sql"
 	_ "github.com/go-sql-driver/mysql"
-	"strconv"
+	_ "strconv"
 )
 
 func check(err error) {
@@ -15,14 +15,14 @@ func check(err error) {
 }
 
 func QueryMysql()  {
-	db, err := sql.Open("mysql", "5gai:5G_ai_2019@tcp(10.17.35.114:3306)/5gai")
+	db, err := sql.Open("mysql", "root:123qwe@tcp(127.0.0.1:3306)/test")
     check(err)
 	defer db.Close()
 
-	juneRows, err := db.Query("SELECT * FROM `WID_KPI_DWPRB_JULY` LIMIT 0, 1")
+	rows, err := db.Query("SELECT * FROM `sys_userinfo` LIMIT 0, 2")
 	check(err)
-	for juneRows.Next() {
-		columns, _ := juneRows.Columns()
+	for rows.Next() {
+		columns, _ := rows.Columns()
 
 		scanArgs := make([]interface{}, len(columns))
 		values := make([]interface{}, len(columns))
@@ -31,16 +31,17 @@ func QueryMysql()  {
 			scanArgs[i] = &values[i]
 		}
 
-		row := make(map[string]float64)
-        err = juneRows.Scan(scanArgs...)
+		row := make(map[string]string)
+        err = rows.Scan(scanArgs...)
         for i, value := range values {
             if value != nil {
-				row[columns[i]], _ = strconv.ParseFloat(string(value.([]byte)), 64)
+				row[columns[i]] = string(value.([]byte))
             }
 		}
 
 		for k, v := range row {
 			fmt.Println(k, v)
 		}
+		fmt.Println()
 	}
 }
