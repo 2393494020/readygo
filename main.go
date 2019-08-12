@@ -9,6 +9,7 @@ import (
 	"github.com/2393494020/readygo/array"
 	_ "github.com/2393494020/readygo/io"
 	"github.com/2393494020/readygo/database"
+	"encoding/json"
 )
 
 func main00() {
@@ -95,6 +96,12 @@ func main02() {
 	database.QueryMysql()
 }
 
+type Monster struct {
+	Age int64
+	Name string
+	Sal float64
+}
+
 func main() {
 	var i = 10
 	var ptr *int = &i
@@ -103,4 +110,28 @@ func main() {
 	fmt.Printf("i=%v\n", *ptr)
 	fmt.Printf("i=%v\n", i)
 	fmt.Printf("%v\n", time.Now().Format("2006-01-02 15:04:05"))
+
+	user := Monster {
+		Age: 19,
+		Name: "小明",
+		Sal: 9000.0,
+	}
+	
+	if userJson, err := json.Marshal(user); err != nil {
+		fmt.Printf("monster=%v\n", err)
+	} else {
+		fmt.Printf("monster=%v\n", string(userJson))
+	}
+
+	province := make(map[string]interface{})
+	province["center"] = "广州"
+	province["code"] = "020"
+	province["gdp"] = 30000
+	province["city"] = []string{"深圳", "佛山", "东莞"}
+
+	if provinceJson, err := json.Marshal(province); err != nil {
+		fmt.Printf("monster=%v\n", err)
+	} else {
+		fmt.Printf("province=%v\n", string(provinceJson))
+	}
 }
