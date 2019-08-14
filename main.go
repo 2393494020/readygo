@@ -7,7 +7,7 @@ import (
 	"math/rand"
 	"github.com/2393494020/readygo/sort"
 	"github.com/2393494020/readygo/array"
-	_ "github.com/2393494020/readygo/io"
+	"github.com/2393494020/readygo/io"
 	"github.com/2393494020/readygo/database"
 	"encoding/json"
 )
@@ -97,12 +97,12 @@ func main02() {
 }
 
 type Monster struct {
-	Age int64
-	Name string
-	Sal float64
+	Age int64 `json:"age"`
+	Name string `json:"name"`
+	Sal float64 `json:"sal"`
 }
 
-func main() {
+func testJson() {
 	var i = 10
 	var ptr *int = &i
 	*ptr = 9
@@ -118,7 +118,7 @@ func main() {
 	}
 	
 	if userJson, err := json.Marshal(user); err != nil {
-		fmt.Printf("monster=%v\n", err)
+		fmt.Printf("err=%v\n", err)
 	} else {
 		fmt.Printf("monster=%v\n", string(userJson))
 	}
@@ -130,8 +130,21 @@ func main() {
 	province["city"] = []string{"深圳", "佛山", "东莞"}
 
 	if provinceJson, err := json.Marshal(province); err != nil {
-		fmt.Printf("monster=%v\n", err)
+		fmt.Printf("err=%v\n", err)
 	} else {
 		fmt.Printf("province=%v\n", string(provinceJson))
 	}
+
+	// 反序列化
+	userStr := "{\"age\":19,\"name\":\"小明\",\"sal\":19000}"
+	var userX Monster
+	err := json.Unmarshal([]byte(userStr), &userX)
+	if err != nil {
+		fmt.Printf("error=%v\n", err)
+	}
+	fmt.Printf("userX=%v\n", userX)
+}
+
+func main() {
+	io.OpenFileLocal("/home/iss/work/go/src/github.com/2393494020/readygo/main.go")
 }

@@ -4,6 +4,9 @@ import (
 	"fmt"
 )
 
+/*
+ * 稀疏数组
+*/
 func SparseArray()  {
 	chess := [11][11]int{}
 	chess[1][2] = 1
